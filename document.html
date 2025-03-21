@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.245.0/dist/lucide.min.js"></script>
+  <style>
+  /* Updated Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #f3e7e9, #e3eeff); /* Soft gradient background */
+  color: #2d3748; /* Dark gray for text */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* Glassmorphism Effect */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  backdrop-filter: blur(20px); /* Stronger blur for a premium feel */
+  border-radius: 20px; /* Rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light border */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glassmorphism:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Styling */
+header {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #4a5568; /* Dark gray for title */
+  margin: 0;
+  animation: fadeInDown 1s ease;
+}
+
+/* Upload Section */
+#dashboard {
+  padding: 2rem;
+}
+
+#dashboard h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #4a5568; /* Dark gray for headings */
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 1s ease;
+}
+
+/* Input Fields */
+input[type="file"],
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(109, 40, 217, 0.2); /* Light purple border */
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  color: #2d3748; /* Dark gray for text */
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="file"]:focus,
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(109, 40, 217, 0.5); /* Light purple border on focus */
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1); /* Subtle focus effect */
+}
+
+textarea {
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.upload-button {
+  background: #6d28d9; /* Solid purple */
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem; /* Reduced padding */
+  font-size: 0.875rem; /* Smaller font size */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  animation: fadeInUp 1.5s ease;
+}
+
+.upload-button:hover {
+  background: #5b21b6; /* Darker purple on hover */
+  transform: translateY(-2px);
+}
+
+.upload-button:active {
+  transform: translateY(0);
+}
+/* File Cards */
+.file-card {
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 1s ease;
+}
+
+.file-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.file-card h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4a5568; /* Dark gray for file names */
+  margin: 0;
+}
+
+.file-card p {
+  font-size: 0.875rem;
+  color: #718096; /* Light gray for descriptions */
+  margin: 0.25rem 0;
+}
+
+.file-card .download-link {
+  color: #6d28d9; /* Purple for download link */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.file-card .download-link:hover {
+  color: #5b21b6; /* Darker purple on hover */
+}
+
+/* Delete Button */
+.delete-button {
+  background: #ef4444; /* Solid red */
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.delete-button:hover {
+  background: #dc2626; /* Darker red on hover */
+  transform: translateY(-2px);
+}
+
+.delete-button:active {
+  transform: translateY(0);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  #dashboard h2 {
+    font-size: 1.5rem;
+  }
+
+  .file-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .file-card button {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  #dashboard h2 {
+    font-size: 1.25rem;
+  }
+
+  .file-card h4 {
+    font-size: 1rem;
+  }
+
+  .file-card p {
+    font-size: 0.75rem;
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="app" class="dashboard-container">
+    <header class="glassmorphism p-6 mb-6">
+      <h1 class="text-3xl font-bold text-gray-800">Secure-Shared Govt Documents.</h1>
+    </header>
+
+    <div id="dashboard" class="glassmorphism p-8">
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">Upload File</h2>
+        <div class="space-y-4">
+          <input id="file-upload" type="file" class="block w-full border p-2 rounded-md bg-white/50 backdrop-blur-sm">
+          <input id="file-name" type="text" class="block w-full border p-2 rounded-md bg-white/50 backdrop-blur-sm" placeholder="Enter document name">
+          <textarea id="file-description" class="block w-full border p-2 rounded-md bg-white/50 backdrop-blur-sm" placeholder="Enter document description"></textarea>
+          <button id="upload-button" class="upload-button w-full p-2 rounded-md">Upload File</button>
+        </div>
+      </section>
+      
+      <section>
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">Your Files</h2>
+        <div id="file-list" class="space-y-4"></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const uploadButton = document.getElementById('upload-button');
+    const fileUploadInput = document.getElementById('file-upload');
+    const fileNameInput = document.getElementById('file-name');
+    const fileDescriptionInput = document.getElementById('file-description');
+    const fileList = document.getElementById('file-list');
+
+    // Load files from localStorage
+    document.addEventListener("DOMContentLoaded", loadFiles);
+
+    uploadButton.addEventListener('click', async () => {
+      const file = fileUploadInput.files[0];
+      const fileName = fileNameInput.value.trim();
+      const fileDescription = fileDescriptionInput.value.trim();
+
+      if (!file || !fileName || !fileDescription) {
+        alert('Please fill in all fields and select a file.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const fileData = {
+          name: fileName,
+          description: fileDescription,
+          fileUrl: e.target.result, // Base64 encoded file data
+          uploadedAt: new Date().toISOString(),
+        };
+
+        // Save file data to localStorage
+        saveFile(fileData);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    function saveFile(fileData) {
+      let files = JSON.parse(localStorage.getItem('files')) || [];
+      files.push(fileData);
+      localStorage.setItem('files', JSON.stringify(files));
+      loadFiles();
+      alert('File uploaded successfully!');
+    }
+
+    function loadFiles() {
+      fileList.innerHTML = '';
+      let files = JSON.parse(localStorage.getItem('files')) || [];
+
+      files.forEach((file, index) => {
+        fileList.innerHTML += `
+          <div class="file-card p-6 rounded-md flex justify-between items-center">
+            <div>
+              <h4 class="text-lg font-semibold text-gray-800">${file.name}</h4>
+              <p class="text-gray-600">${file.description}</p>
+              <p class="text-gray-500 text-sm">Uploaded at: ${new Date(file.uploadedAt).toLocaleString()}</p>
+              <a href="${file.fileUrl}" download="${file.name}" class="download-link underline">Download File</a>
+            </div>
+            <button onclick="deleteFile(${index})" class="delete-button p-2 rounded-md">Delete</button>
+          </div>
+        `;
+      });
+    }
+
+    function deleteFile(index) {
+      let files = JSON.parse(localStorage.getItem('files')) || [];
+      files.splice(index, 1);
+      localStorage.setItem('files', JSON.stringify(files));
+      loadFiles();
+      alert('File deleted successfully!');
+    }
+  </script>
+</body>
+</html>
