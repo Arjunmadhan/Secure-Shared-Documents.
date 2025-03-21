@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Firebase Authentication</title>
   <style>
-    /* Global Styles */
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
@@ -122,7 +121,6 @@
       display: none;
     }
 
-    /* OTP Page Styles */
     #otp-page .auth-container {
       text-align: center;
     }
@@ -177,7 +175,6 @@
 </head>
 <body>
   <div class="container">
-    <!-- Registration Section -->
     <div id="register-section">
       <h2>Register</h2>
       <div class="input-group">
@@ -196,7 +193,6 @@
       <p class="toggle-link">Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
     </div>
 
-    <!-- Login Section -->
     <div id="login-section" class="hidden">
       <h2>Login</h2>
       <div class="input-group">
@@ -211,7 +207,6 @@
       <p class="toggle-link">Don't have an account? <a href="#" onclick="showRegister()">Register</a></p>
     </div>
 
-    <!-- OTP Verification -->
     <div id="otp-page" class="hidden">
       <div class="auth-container">
         <h2>Verify OTP</h2>
@@ -224,7 +219,6 @@
     </div>
   </div>
 
-  <!-- Firebase SDK (v8 Compatibility) -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script>
@@ -245,7 +239,6 @@
 
     let tempUser;
 
-    // Show/Hide Sections
     function showLogin() {
       document.getElementById('register-section').classList.add('hidden');
       document.getElementById('login-section').classList.remove('hidden');
@@ -264,7 +257,6 @@
       document.getElementById('otp-page').classList.remove('hidden');
     }
 
-    // Handle Registration
     async function handleRegister() {
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
@@ -276,25 +268,21 @@
       }
 
       try {
-        // Create user in Firebase Authentication
+
         const userCredential = await auth.createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
-        // Save additional user data (e.g., name) in Firestore or Realtime Database (optional)
         const userData = { email, name };
         localStorage.setItem('user', JSON.stringify(userData));
 
-        // Generate mock OTP
         const otp = Math.floor(100000 + Math.random() * 900000);
         tempUser = { email, name, password, otp };
-        alert(`Your OTP is: ${otp}`); // For demo purposes
+        alert(`Your OTP is: ${otp}`);
         showOtpSection();
       } catch (error) {
         alert('Error during registration: ' + error.message);
       }
     }
-
-    // Verify OTP
     function verifyOtp() {
       const enteredOtp = document.getElementById('otp-code').value;
       if (enteredOtp == tempUser.otp) {
@@ -305,7 +293,6 @@
       }
     }
 
-    // Handle Login
     async function handleLogin() {
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
