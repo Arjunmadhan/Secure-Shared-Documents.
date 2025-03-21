@@ -7,11 +7,11 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.245.0/dist/lucide.min.js"></script>
   <style>
-  /* Updated Global Styles */
+
 body {
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #f3e7e9, #e3eeff); /* Soft gradient background */
-  color: #2d3748; /* Dark gray for text */
+  background: linear-gradient(135deg, #f3e7e9, #e3eeff); 
+  color: #2d3748; 
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -26,13 +26,12 @@ body {
   padding: 2rem;
 }
 
-/* Glassmorphism Effect */
 .glassmorphism {
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-  backdrop-filter: blur(20px); /* Stronger blur for a premium feel */
-  border-radius: 20px; /* Rounded corners */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Light border */
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background: rgba(255, 255, 255, 0.8); 
+  backdrop-filter: blur(20px);
+  border-radius: 20px; 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1); 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -41,7 +40,6 @@ body {
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
 
-/* Header Styling */
 header {
   padding: 1.5rem;
   margin-bottom: 2rem;
@@ -51,12 +49,11 @@ header {
 header h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #4a5568; /* Dark gray for title */
+  color: #4a5568;
   margin: 0;
   animation: fadeInDown 1s ease;
 }
 
-/* Upload Section */
 #dashboard {
   padding: 2rem;
 }
@@ -64,21 +61,20 @@ header h1 {
 #dashboard h2 {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #4a5568; /* Dark gray for headings */
+  color: #4a5568; 
   margin-bottom: 1.5rem;
   animation: fadeInUp 1s ease;
 }
 
-/* Input Fields */
 input[type="file"],
 input[type="text"],
 textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid rgba(109, 40, 217, 0.2); /* Light purple border */
+  border: 1px solid rgba(109, 40, 217, 0.2); 
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-  color: #2d3748; /* Dark gray for text */
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3748; 
   font-size: 1rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -87,20 +83,20 @@ input[type="file"]:focus,
 input[type="text"]:focus,
 textarea:focus {
   outline: none;
-  border-color: rgba(109, 40, 217, 0.5); /* Light purple border on focus */
-  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1); /* Subtle focus effect */
+  border-color: rgba(109, 40, 217, 0.5); 
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1); 
 }
 
 textarea {
-  resize: vertical; /* Allow vertical resizing */
+  resize: vertical; 
 }
 
 .upload-button {
-  background: #6d28d9; /* Solid purple */
+  background: #6d28d9; 
   color: white;
   font-weight: 500;
-  padding: 0.5rem 1rem; /* Reduced padding */
-  font-size: 0.875rem; /* Smaller font size */
+  padding: 0.5rem 1rem; 
+  font-size: 0.875rem; 
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -109,16 +105,16 @@ textarea {
 }
 
 .upload-button:hover {
-  background: #5b21b6; /* Darker purple on hover */
+  background: #5b21b6; 
   transform: translateY(-2px);
 }
 
 .upload-button:active {
   transform: translateY(0);
 }
-/* File Cards */
+
 .file-card {
-  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 15px;
@@ -139,30 +135,29 @@ textarea {
 .file-card h4 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #4a5568; /* Dark gray for file names */
+  color: #4a5568; 
   margin: 0;
 }
 
 .file-card p {
   font-size: 0.875rem;
-  color: #718096; /* Light gray for descriptions */
+  color: #718096; 
   margin: 0.25rem 0;
 }
 
 .file-card .download-link {
-  color: #6d28d9; /* Purple for download link */
+  color: #6d28d9;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .file-card .download-link:hover {
-  color: #5b21b6; /* Darker purple on hover */
+  color: #5b21b6; 
 }
 
-/* Delete Button */
 .delete-button {
-  background: #ef4444; /* Solid red */
+  background: #ef4444; 
   color: white;
   font-weight: 500;
   padding: 0.5rem 1rem;
@@ -173,7 +168,7 @@ textarea {
 }
 
 .delete-button:hover {
-  background: #dc2626; /* Darker red on hover */
+  background: #dc2626;
   transform: translateY(-2px);
 }
 
@@ -181,7 +176,6 @@ textarea {
   transform: translateY(0);
 }
 
-/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -215,7 +209,6 @@ textarea {
   }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .dashboard-container {
     padding: 1rem;
@@ -289,7 +282,6 @@ textarea {
     const fileDescriptionInput = document.getElementById('file-description');
     const fileList = document.getElementById('file-list');
 
-    // Load files from localStorage
     document.addEventListener("DOMContentLoaded", loadFiles);
 
     uploadButton.addEventListener('click', async () => {
@@ -307,11 +299,10 @@ textarea {
         const fileData = {
           name: fileName,
           description: fileDescription,
-          fileUrl: e.target.result, // Base64 encoded file data
+          fileUrl: e.target.result, 
           uploadedAt: new Date().toISOString(),
         };
 
-        // Save file data to localStorage
         saveFile(fileData);
       };
       reader.readAsDataURL(file);
